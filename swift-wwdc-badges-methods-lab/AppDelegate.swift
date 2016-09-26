@@ -10,37 +10,49 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        let speakerBadge = badgeForSpeaker("Melody")
+        print(speakerBadge)
+        
+        let namingBadgesForSpeakers = badgesForSpeakers(["Melody", "Martha", "Heidi"])
+        print(namingBadgesForSpeakers)
+        
+        let greeting = greetingsAndRoomAssignmentsForSpeakers(["Melody", "Martha", "Heidi", "Amin"])
+        print(greeting)
+        
         return true
     }
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    
+    func badgeForSpeaker(speaker: String) -> String {
+        return "Hello, my name is \(speaker)"
     }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    
+    func badgesForSpeakers(speakers: [String])-> [String] {
+        
+        var badgesArray: [String] = Array()
+        for name in speakers {
+            badgesArray.append("Hello, my name is \(name)")
+        }
+        print(badgesArray)
+        return badgesArray
     }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    func greetingsAndRoomAssignmentsForSpeakers(speakers: [String]) -> [String] {
+        
+        var greetingAndAssighment: [String] = Array()
+        var roomNumber = 0
+        for name in speakers {
+            roomNumber += 1
+            greetingAndAssighment.append("Welcome, \(name)! You will be in room number \(roomNumber).")
+            print(greetingAndAssighment)
+        }
+        return greetingAndAssighment
     }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
 }
-
